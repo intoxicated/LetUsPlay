@@ -34,6 +34,26 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+
+  'post /api/register': {
+
+  },
+
+  'post /api/authenticate': {
+
+  },
+
+  'post /api/logout': {
+
+  },
+
+  'post /api/broadcastStatus':{
+
+  },
+
+  'post /api/setGames' : {
+
   }
 
   /***************************************************************************
