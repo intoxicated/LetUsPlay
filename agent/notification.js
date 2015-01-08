@@ -17,7 +17,7 @@ module.exports = {
 			push.alert = origin + " is now playing " + message;
 			push.payload = {'message': message};
 
-			appConnection.pushNotification(push, d);
+			apnConnection.pushNotification(push, d);
 		}
 	}
 };
