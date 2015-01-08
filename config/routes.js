@@ -37,21 +37,24 @@ module.exports.routes = {
   },
 
   'post /api/register': {
-
+    controller: 'MainController',
+    action: 'register'
   },
 
   'post /api/authenticate': {
-
+    controller: 'MainController',
+    action: 'authenticate'
   },
 
   'post /api/logout': {
-
+    controller: 'MainController',
+    action: 'logout'
   },
 
   'post /api/broadcastStatus':{
 
   },
-
+  //user id, game ids
   'post /api/setGames' : {
 
   }
