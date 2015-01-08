@@ -7,28 +7,25 @@
  * @docs        :: http://sailsjs.org/#!documentation/policies
  *
  */
- 
+
 module.exports = function(req, res, next) {
-
-  var email = req.body.email;
-  var password = req.body.password;
-
-  if(email === "admin" && password === "admin") {
-    sails.log("authenticated as admin");
-    delete req.body.email;
-    delete req.body.password;
+  if (!req.headers.token)
     return next();
-  }
-  else
-    return res.forbidden("Not permitted to perform this action"); 
+  //return res.forbidden("Not authenticated to perform this action");
 
-  // User is allowed, proceed to the next policy, 
-  // or if this is the last policy, the controller
-  //if (req.session.authenticated) {
-  //  return next();
-  //}
+  var token = req.headers.token;
 
-  // User is not allowed
-  // (default res.forbidden() behavior can be overridden in `config/403.js`)
-  //return res.forbidden('You are not permitted to perform this action.');
+  sails.log("Token: " + token);
+
+  UserManager.authenticateToken(token, function (err, user) {
+
+    if (err)
+      return res.send(500);
+
+    if (!user)
+      return res.send(404);
+
+    req.user = user;
+    next();
+  });
 };
