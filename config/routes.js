@@ -54,10 +54,24 @@ module.exports.routes = {
   'post /api/broadcastStatus':{
 
   },
+
   //user id, game ids
   'post /api/setGames' : {
 
+  },
+
+  'post /api/removeGame' : {
+
+  },
+
+  'post /api/addFriend' : {
+
+  },
+
+  'post /api/removeFriend' : {
+
   }
+
 
   /***************************************************************************
   *                                                                          *
