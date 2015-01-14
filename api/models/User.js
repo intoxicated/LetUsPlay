@@ -30,8 +30,9 @@ module.exports = {
             type: 'string'
         },
 
-        lastSeen: {
-            type: 'datetime'
+        isActive: {
+            type: 'boolean',
+            defaultTo: true
         },
 
         friends: {
