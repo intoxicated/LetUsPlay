@@ -9,6 +9,9 @@
  */
 
 module.exports = function(req, res, next) {
+
+  sails.log("isAuthenticated processing");
+
   if (!req.headers.token)
     return next();
   //return res.forbidden("Not authenticated to perform this action");

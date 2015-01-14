@@ -12,6 +12,7 @@ module.exports = {
         if(!nickname || !password)
             return res.json(401, {error: "missing nickname or password"});
 
+        //set active on by default when user is created
         User.create({nickname: nickname, password: password, device_token: dtoken, platform: platform}).exec(function(err, user) {
             if(err)
                 return res.json(err.status, {error: "Error:" + err});
@@ -37,13 +38,30 @@ module.exports = {
                     return res.json(403, {error: "Forbidden"});
                 if(!valid)
                     return res.json(401, {error: "Invalid user nmae or password"});
-                else
-                    return res.json({user:nickname, token: UserManager.issueToken(user.id)});
+
+                //set user isActive
+                //save
+
+                return res.json({user:nickname, token: UserManager.issueToken(user.id)});
             });
         });
     },
 
     logout: function(req, res) {
+        var nickname = req.param("nickname");
 
+        if (req.session.user == null)
+            return res.send(500, {error: "cannot log out"});
+        else {
+            User.find({nickname:nickname}).exec(function (err, user){
+                if(err)
+                    return res.send(err.status, {error: "Error " + err});
+
+                //set user isActive false
+                //save
+
+                return res.send(200, {status:"logout successfully"});
+            });
+        }
     }
 };
