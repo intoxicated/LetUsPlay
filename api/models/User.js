@@ -8,6 +8,11 @@ module.exports = {
     schema: true,
 
     attributes: {
+        id:{
+            type: 'integer',
+            autoIncrement: true,
+            primaryKey: true
+        },
 
         nickname: {
             type: 'string',
@@ -46,9 +51,19 @@ module.exports = {
             dominant: true
         },
 
-        toJson: function() {
+        toJSON: function() {
             return this.toObject();
         }
+    },
+
+    isValidId: function(id,cb) {
+        sails.log("validating user: " + id);
+        User.findOne({id:id}).exec(function(err, user){
+            if(!user || err)
+                cb(false);
+            else
+                cb(true);
+        });
     },
 
     beforeCreate: function(values, next) {

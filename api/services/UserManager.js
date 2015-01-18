@@ -16,7 +16,7 @@ module.exports = {
     },
 
     authenticateToken: function(token, done) {
-
+        sails.log("authenticating token... >" + token + "<");
         var tokenObj = jwt.decode(token, jwtSecret);
         User.findOne({id: tokenObj.id})
             .done(function(err, user) {

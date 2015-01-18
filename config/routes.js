@@ -65,11 +65,13 @@ module.exports.routes = {
   },
 
   'post /api/addFriend' : {
-
+    controller: 'UserController',
+    action: 'addFriend'
   },
 
   'post /api/removeFriend' : {
-
+    controller: 'UserController',
+    action: 'removeFriend'
   }
 
 

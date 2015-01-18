@@ -14,7 +14,7 @@ module.exports = function(req, res, next) {
 
   if (!req.headers.token)
     return next();
-  //return res.forbidden("Not authenticated to perform this action");
+    //return res.forbidden("Not authenticated to perform this action");
 
   var token = req.headers.token;
 
